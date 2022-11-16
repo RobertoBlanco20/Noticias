@@ -3,15 +3,15 @@ import { TfiWorld } from "react-icons/tfi";
 import { AiFillCaretDown } from "react-icons/ai";
 import useCategoria from "../hooks/useCategoria"
 
-const Header = () => {
+const Header = ({setCategoria}) => {
 
     let [open,setOpen]=useState(false);
 
     let OPCIONES = [
         {value: 'general', title: 'General'},
         {value: 'sports', title: 'Deportes'},
-        {value: 'enterteinment', title: 'Entretenimiento'},
-        {value: 'healty', title: 'Salud'},
+        {value: 'entertainment', title: 'Entretenimiento'},
+        {value: 'health', title: 'Salud'},
         {value: 'technology', title: 'Tecnologia'},
         {value: 'business', title: 'Negocios'},
         {value: 'science', title: 'Ciencia'}
@@ -19,6 +19,8 @@ const Header = () => {
 
     /* Utilizar el custom state */
     const [ state, Categorias ] = useCategoria('general', OPCIONES)
+
+    
 
 
 
@@ -30,7 +32,9 @@ const Header = () => {
                 <h1 className="mr-4 text-3xl font-bold"><span>Noti</span>AR</h1>
 
                 {/* Categorias */}
-                <Categorias/>
+                <Categorias
+                    setCategoria={setCategoria}
+                />
                 
 
                 <div onClick={()=>setOpen(!open)} className='text-md absolute right-6 top-6 cursor-pointer  flex pt-2'>
