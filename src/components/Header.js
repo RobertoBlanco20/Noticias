@@ -1,10 +1,26 @@
 import React, {useState} from 'react';
 import { TfiWorld } from "react-icons/tfi";
 import { AiFillCaretDown } from "react-icons/ai";
+import useCategoria from "../hooks/useCategoria"
 
 const Header = () => {
 
     let [open,setOpen]=useState(false);
+
+    let OPCIONES = [
+        {value: 'general', title: 'General'},
+        {value: 'sports', title: 'Deportes'},
+        {value: 'enterteinment', title: 'Entretenimiento'},
+        {value: 'healty', title: 'Salud'},
+        {value: 'technology', title: 'Tecnologia'},
+        {value: 'business', title: 'Negocios'},
+        {value: 'science', title: 'Ciencia'}
+    ]
+
+    /* Utilizar el custom state */
+    const [ state, Categorias ] = useCategoria('general', OPCIONES)
+
+
 
     return ( 
         <header className="fixed w-full lg:w-11/12 mx-auto p-2">
@@ -13,14 +29,9 @@ const Header = () => {
 
                 <h1 className="mr-4 text-3xl font-bold"><span>Noti</span>AR</h1>
 
-                <ul className=" flex cursor-pointer pt-2 mr-20 sm:mr-12 md:mr-24 overflow-x-auto">
-                    <li className="px-1 text-slate-400 md:text-white hover:text-red-600">General</li>
-                    <li className="px-3 text-slate-400 md:text-white hover:text-red-600">Deportes</li>
-                    <li className="px-3 text-slate-400 md:text-white hover:text-red-600">Negocios</li>
-                    <li className="px-3 text-slate-400 md:text-white hover:text-red-600">Entretenimiento</li>
-                    <li className="px-3 text-slate-400 md:text-white hover:text-red-600">Salud</li>
-                    <li className="px-3 text-slate-400 md:text-white hover:text-red-600">Tecnologia</li>
-                </ul>
+                {/* Categorias */}
+                <Categorias/>
+                
 
                 <div onClick={()=>setOpen(!open)} className='text-md absolute right-6 top-6 cursor-pointer  flex pt-2'>
                     <a href='!#' name={open ? 'close':'menu'}>
@@ -31,9 +42,9 @@ const Header = () => {
                     </a>
 
                     <ul className={`pb-12 absolute z-auto right-1 w-auto pl-0 transition-all duration-500 ease-in ${open ? 'top-10 ':'top-[-490px]'}`}>
-                        <li className='border-2 border-white rounded p-2'>Argentina</li>
-                        <li className='border-2 border-white rounded p-2 my-1'>España</li>
-                        <li className='border-2 border-white rounded p-2'>Uruguay</li>
+                        <li className='border-2 border-white rounded p-2 hover:text-red-500 hover:border-red-500'>Argentina</li>
+                        <li className='border-2 border-white rounded p-2 my-1 hover:text-red-500 hover:border-red-500'>España</li>
+                        <li className='border-2 border-white rounded p-2 hover:text-red-500 hover:border-red-500'>Uruguay</li>
                     </ul>
                     
                 </div>
